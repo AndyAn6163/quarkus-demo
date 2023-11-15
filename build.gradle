@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'org.apache.camel.quarkus:camel-quarkus-google-pubsub'
+    implementation 'io.quarkiverse.googlecloudservices:quarkus-google-cloud-firestore'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-google-cloud-services-bom:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-camel-bom:${quarkusPlatformVersion}")
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
+    implementation 'io.quarkus:quarkus-micrometer-registry-prometheus'
+    implementation 'io.quarkus:quarkus-arc'
+    implementation 'io.quarkus:quarkus-resteasy-reactive'
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+    implementation 'io.quarkus:quarkus-config-yaml'
+    implementation 'org.jetbrains:annotations:23.0.0'
+    implementation 'io.quarkus:quarkus-rest-client-reactive-jackson'
+    implementation 'io.quarkus:quarkus-scheduler'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    implementation 'io.quarkus:quarkus-hibernate-validator'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.apache.camel.quarkus:camel-quarkus-direct'
+    implementation 'org.apache.camel.quarkus:camel-quarkus-jackson'
+//    implementation 'org.apache.camel.quarkus:camel-quarkus-pulsar'  camel-quarkus-pulsar不Support Native
+    implementation 'org.apache.camel.quarkus:camel-quarkus-aws2-kinesis'
+    implementation 'org.apache.camel.quarkus:camel-quarkus-kafka'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.quarkus:quarkus-junit5-mockito'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'com.demo'
+version '1.0.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+wrapper {
+    gradleVersion = '8.3'
+}
