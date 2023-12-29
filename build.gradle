@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-admin:9.1.1'
     implementation 'org.apache.camel.quarkus:camel-quarkus-google-pubsub'
     implementation 'io.quarkiverse.googlecloudservices:quarkus-google-cloud-firestore'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:quarkus-google-cloud-services-bom:${quarkusPlatformVersion}")
